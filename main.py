@@ -1,5 +1,17 @@
+# Bookbot
+
+# Imports
+import sys
+
+# Checking sys.argv
+if len(sys.argv) != 2:
+    print(f"Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+# Importing functions from stats.py
 from stats import number_of_words, number_of_characters, sort_char
 
+# Function for main program execution
 def main():
 
     num_words = number_of_words()
@@ -7,7 +19,7 @@ def main():
     sorted_char = sort_char(char_counts)
     
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {sys.argv[1]}...")
     print("----------- Word Count ----------")
     print(f"Found {num_words} total words")
     print("--------- Character Count -------")
@@ -19,5 +31,6 @@ def main():
 
     print("============= END ===============")
 
+# Main function to execute the program
 if __name__ == "__main__":
     main()
