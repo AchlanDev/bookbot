@@ -1,16 +1,23 @@
 # Bookbot
 
+import sys
 from stats import get_num_words, get_num_chars, sort_dict
 
 def main():
 
-    num_chars = get_num_chars(get_book_text("books/frankenstein.txt"))
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    path_to_book = sys.argv[1]
+
+    num_chars = get_num_chars(get_book_text(path_to_book))
     sort_chars = sort_dict(num_chars)
 
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {path_to_book}...")
     print("----------- Word Count ----------")
-    print(f"Found {get_num_words(get_book_text('books/frankenstein.txt'))} total words")
+    print(f"Found {get_num_words(get_book_text(path_to_book))} total words")
     print("--------- Character Count -------")
     for item in sort_chars:
         if item["char"].isalpha():
